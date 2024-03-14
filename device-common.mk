@@ -304,19 +304,18 @@ PRODUCT_PACKAGES += \
     android.hardware.radio@1.4.vendor:64 \
     android.hardware.radio.config@1.2.vendor:64 \
     android.hardware.radio.deprecated@1.0.vendor:64 \
-    init.baseband.rc \
-    init.vendor.rilchip.rc \
-    init.vendor.rilcommon.rc \
-    libdsms_vendor:64 \
     libnetutils.vendor:64 \
-    libsqlite.vendor:64 \
+    libsqlite.vendor:64
+
+PRODUCT_PACKAGES += \
+    libdsms_vendor:64
+
+PRODUCT_PACKAGES += \
     secril_config_svc \
-    sehradiomanager \
-    vendor.samsung.rilchip.slsi.rc
+    sehradiomanager
 
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/ril/sehradiomanager.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sehradiomanager.conf
-    secril_config_svc
 
 # SamsungDoze
 PRODUCT_PACKAGES += \

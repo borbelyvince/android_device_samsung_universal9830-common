@@ -1,11 +1,4 @@
 prebuilt_etc {
-    name: "init.baseband.rc",
-    src: "etc/init/init.baseband.rc",
-    sub_dir: "init",
-    vendor: true,
-}
-
-prebuilt_etc {
     name: "init.exynos990.rc",
     src: "etc/init/init.exynos990.rc",
     sub_dir: "init",
@@ -41,21 +34,6 @@ prebuilt_etc {
     sub_dir: "init",
     vendor: true,
 }
-
-prebuilt_etc {
-    name: "init.vendor.rilchip.rc",
-    src: "etc/init/init.vendor.rilchip.rc",
-    sub_dir: "init",
-    vendor: true,
-}
-
-prebuilt_etc {
-    name: "init.vendor.rilcommon.rc",
-    src: "etc/init/init.vendor.rilcommon.rc",
-    sub_dir: "init",
-    vendor: true,
-}
-
 
 prebuilt_etc {
     name: "pa_daemon_teegris.rc",

@@ -193,30 +193,33 @@ vendor/firmware/yuv2bayer.bin
 # Proca
 -vendor/bin/vendor.samsung.hardware.security.proca@2.0-service
 
-# RIL
+## RIL
+-vendor/bin/cass
 -vendor/bin/cbd
+vendor/etc/init/cass.rc
+vendor/etc/init/init.baseband.rc
+vendor/etc/init/init.vendor.rilcommon.rc
 vendor/etc/plmn_delta.bin
 vendor/etc/plmn_delta_attaio.bin
 vendor/etc/plmn_delta_usagsm.bin
-vendor/etc/plmn_se13.bin
--vendor/lib/libsecril-client.so;MODULE=libsecril-client.exynos990
 -vendor/lib64/libengmode_client.so
 -vendor/lib64/libfloatingfeature.so
--vendor/lib64/libsecril-client.so;MODULE=libsecril-client.exynos990
 -vendor/lib64/libvkmanager_vendor.so
 -vendor/lib64/vendor.samsung.hardware.radio.bridge@2.0.so
 -vendor/lib64/vendor.samsung.hardware.radio.channel@2.0.so
--vendor/lib64/vendor.samsung.hardware.radio@2.0.so
--vendor/lib64/vendor.samsung.hardware.radio@2.1.so
 
-# RIL - from x1s - G980FXXSCDUK1
--vendor/bin/hw/rild|85f98906d824830d0e132fb63ea6adb1b99b08b9
--vendor/lib64/libril-samsung.so|ae21d2979f849435331f7e5c224dd1ce61615eba
--vendor/lib64/libsemnativecarrierfeature.so|ca44453cf7cca968606b56936be7de0d214d74be
-
-# RIL - from x1s - G981BXXSCDUJ5
--vendor/lib64/libsec-ril-dsds.so|7ed9ea9e8b4a70759f1c1dc039b847868ac38d06
--vendor/lib64/libsec-ril.so|cfc54d1a2048cbea61900cc034808e7b3ee23ad4
+## RIL - from f62 - E625FDDS5CXA3
+-vendor/bin/hw/rild
+vendor/etc/init/init.vendor.rilchip.rc
+-vendor/lib/libsecril-client.so;MODULE=libsecril-client.exynos990
+-vendor/lib/libsemnativecarrierfeature.so
+-vendor/lib64/libSemDataProps.so
+-vendor/lib64/libSemTelephonyProps.so
+-vendor/lib64/libril_sem.so
+-vendor/lib64/libsec-ril.so
+-vendor/lib64/libsecril-client.so;MODULE=libsecril-client.exynos990
+-vendor/lib64/libsemnativecarrierfeature.so
+-vendor/lib64/vendor.samsung.hardware.radio.bridge@2.1.so
 
 # Secnative
 -vendor/lib/libsecnativefeature.so
@@ -255,6 +258,12 @@ vendor/tee/driver/00000000-0000-0000-0000-564c544b4456
 vendor/tee/driver/18d9f073-18a5-4ade-9def-875e07f7f293_
 vendor/tee/ffffffff-0000-0000-0000-000000000030
 vendor/tee/tui/resolution_common/ID00000100
+
+## VaultKeeper
+-vendor/bin/vaultkeeperd
+vendor/etc/init/vaultkeeper_common.rc
+-vendor/lib64/libstork_shared.so
+-vendor/lib64/libvkservice.so
 
 # Widevine
 -vendor/bin/hw/android.hardware.drm@1.3-service.widevine
