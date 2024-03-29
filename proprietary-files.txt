@@ -2,9 +2,22 @@
 # Vendor security patch level 2023-12-01
 
 # Audio (Dolby Atmos)
+-vendor/lib/libaudioparamupdate.so
+-vendor/lib64/libaudioparamupdate.so
 -vendor/lib/libprofileparamstorage.so
 -vendor/lib/libsecaudiocoreutils.so
 -vendor/lib/libspatializerparamstorage.so
+-vendor/lib/vndk/libtinyalsa.so;MODULE=libtinyalsa.exynos990
+-vendor/lib/vndk/libaudioroute.so;MODULE=libaudioroute.exynos990
+-vendor/lib64/vndk/libaudioroute.so;MODULE=libaudioroute.exynos990
+-vendor/lib64/vndk/libtinyalsa.so;MODULE=libtinyalsa.exynos990
+
+-vendor/lib/libSamsungPostProcessConvertor.so
+-vendor/lib/lib_soundaliveresampler.so
+-vendor/lib/lib_SoundAlive_SRC384_ver320.so
+-vendor/lib64/libSamsungPostProcessConvertor.so
+-vendor/lib64/lib_soundaliveresampler.so
+-vendor/lib64/lib_SoundAlive_SRC384_ver320.so
 
 # Audio (Firmware)
 vendor/firmware/APSV_AUDIO_SLSI.bin

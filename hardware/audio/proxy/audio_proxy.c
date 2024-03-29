@@ -70,11 +70,14 @@
 #endif
 
 #ifdef SEC_AUDIO_RESAMPLER
-#include "PostProcessConvertor.h"
+typedef audio_format_t (*audio_format_from_pcm_format_t)(uint32_t format);
+void * PostProcessConvertorInit(unsigned int requested_sample_rate, uint32_t rate, uint32_t channels, audio_format_t proxy_last_format, audio_format_t audio_format_from_pcm_format);
+extern size_t PostProcessConvertorProcess(void* resampler, void* conversion_buffer, int16_t* actual_read_buf, uint32_t period_size);
+extern int PostProcessConvertorClear(void * resampler);
 #endif
 
 #ifdef SEC_AUDIO_PARAM_UPDATE
-#include <audio_param_update/audio_param_update.h>
+extern int init_audio_param();
 #endif
 
 /******************************************************************************/
@@ -439,6 +442,7 @@ static int get_pcm_device_number(void *proxy, void *proxy_stream)
 
     return pcm_device_number;
 }
+
 
 /*
  * Internal Path Control Functions for A-Box
@@ -1125,6 +1129,11 @@ static void prepare_routing_device_config(void *proxy, int ausage, device_type t
 
     return;
 }
+
+#ifdef SEC_AUDIO_SUPPORT_LISTENBACK_DSPEFFECT
+void proxy_stop_karaoke_listenback(void *proxy);
+void proxy_start_karaoke_listenback(void *proxy);
+#endif
 
 static void enable_internal_path(void *proxy, int ausage, device_type target_device)
 {
@@ -2394,6 +2403,18 @@ int proxy_get_requested_frame_size(struct audio_proxy_stream *apstream)
     return audio_channel_count_from_in_mask(apstream->requested_channel_mask) *
            audio_bytes_per_sample(apstream->requested_format);
 }
+
+#ifdef SEC_AUDIO_SAMSUNGRECORD
+int32_t proxy_get_last_format(void *proxy_stream)
+{
+    struct audio_proxy_stream *apstream = (struct audio_proxy_stream *)proxy_stream;
+
+    audio_format_t format = apstream->skip_format_convert ?
+        proxy_get_actual_format(apstream) : apstream->requested_format;
+
+    return format;
+}
+#endif
 
 static int get_next_buffer(struct resampler_buffer_provider *buffer_provider,
                            struct resampler_buffer* buffer)
@@ -4975,7 +4996,7 @@ bool proxy_set_route(void *proxy, int ausage, int device, int modifier, bool set
     if (routed_device == DEVICE_SPEAKER)
         routed_device = DEVICE_SPEAKER_DUAL;
 
-#ifdef SUPPORT_QUAD_MIC
+#ifdef SUPPORT_CAMCORDER_QUAD_MIC
     // HACK: Force quad mic for camcorder
     if (routed_device == DEVICE_MAIN_MIC && routed_ausage == AUSAGE_CAMCORDER)
         routed_device = DEVICE_QUAD_MIC;
@@ -6491,41 +6512,6 @@ bool proxy_is_bt_a2dp_ready(void)
     }
 
     return false;
-}
-#endif
-
-#ifdef SEC_AUDIO_SAMSUNGRECORD
-void proxy_set_stream_format(void *proxy_stream, audio_format_t new_format, bool skip)
-{
-    struct audio_proxy_stream *apstream = (struct audio_proxy_stream *)proxy_stream;
-
-    if (new_format != AUDIO_FORMAT_INVALID) {
-        apstream->pcmconfig.format = pcm_format_from_audio_format(new_format);
-    }
-    apstream->skip_format_convert = skip;
-    check_conversion(apstream);
-    ALOGI("%s: new_format %d, skip_format_convert %d", __func__, new_format, apstream->skip_format_convert);
-}
-
-uint32_t proxy_get_last_channel_count(void *proxy_stream)
-{
-    struct audio_proxy_stream *apstream = (struct audio_proxy_stream *)proxy_stream;
-
-    int channel_cnt = apstream->skip_ch_convert ?
-        proxy_get_actual_channel_count(apstream)
-        : audio_channel_count_from_in_mask(apstream->requested_channel_mask);
-
-    return channel_cnt;
-}
-
-int32_t proxy_get_last_format(void *proxy_stream)
-{
-    struct audio_proxy_stream *apstream = (struct audio_proxy_stream *)proxy_stream;
-
-    audio_format_t format = apstream->skip_format_convert ?
-        proxy_get_actual_format(apstream) : apstream->requested_format;
-
-    return format;
 }
 #endif
 

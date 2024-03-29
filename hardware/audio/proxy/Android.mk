@@ -34,6 +34,17 @@ LOCAL_C_INCLUDES += \
 LOCAL_HEADER_LIBRARIES := libhardware_headers
 LOCAL_SHARED_LIBRARIES := liblog libcutils libtinyalsa libtinycompress libaudioutils libaudioroute libalsautils libexpat
 
+ifeq ($(BOARD_USE_SEC_AUDIO_PARAM_UPDATE),true)
+LOCAL_SHARED_LIBRARIES += libaudioparamupdate libaudioroute.exynos990 libtinyalsa.exynos990
+endif
+
+# libaudioroute -> reverse direct_mixer_get_id
+# libtinyalsa -> reverse mixer_update
+
+ifeq ($(BOARD_USE_SEC_AUDIO_RESAMPLER),true)
+LOCAL_SHARED_LIBRARIES += libSamsungPostProcessConvertor
+endif
+
 # USB Offload Audio Feature
 ifeq ($(BOARD_USE_USB_OFFLOAD),true)
 LOCAL_CFLAGS += -DSUPPORT_USB_OFFLOAD
@@ -66,8 +77,8 @@ ifeq ($(BOARD_USE_QUAD_MIC),true)
 LOCAL_CFLAGS += -DSUPPORT_QUAD_MIC
 endif
 
-ifeq ($(BOARD_USE_DIRECT_RCVSPK_PATH),true)
-LOCAL_CFLAGS += -DSUPPORT_DIRECT_RCVSPK_PATH
+ifeq ($(BOARD_USE_CAMCORDER_QUAD_MIC),true)
+LOCAL_CFLAGS += -DSUPPORT_CAMCORDER_QUAD_MIC
 endif
 
 ifeq ($(BOARD_USE_SEC_AUDIO_DYNAMIC_NREC),true)
