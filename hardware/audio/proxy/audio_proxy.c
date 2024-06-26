@@ -4897,10 +4897,6 @@ bool proxy_set_route(void *proxy, int ausage, int device, int modifier, bool set
 
     modifier_type routed_modifier = (modifier_type)modifier;
 
-    // HACK: Force dual speaker
-    if (routed_device == DEVICE_SPEAKER)
-        routed_device = DEVICE_SPEAKER_DUAL;
-
 #ifdef SUPPORT_CAMCORDER_QUAD_MIC
     // HACK: Force quad mic for camcorder
     if (routed_device == DEVICE_MAIN_MIC && routed_ausage == AUSAGE_CAMCORDER) {
@@ -6302,6 +6298,10 @@ void * proxy_init(void)
 
     /* dualspk */
     aproxy->spk_ampL_powerOn = false;
+
+    /* Force dual speaker */
+    aproxy->support_dualspk = true;
+
 
 #ifdef SEC_AUDIO_DUMP
     aproxy->input_cnt = 0;
