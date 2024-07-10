@@ -29,9 +29,6 @@ PRODUCT_PACKAGES += \
     audio.bluetooth.default \
     audio.primary.exynos990 \
     audio.r_submix.default \
-    libaudioroute \
-    libtinyalsa \
-    libtinycompress \
     SamsungDAP
 
 PRODUCT_COPY_FILES += \
