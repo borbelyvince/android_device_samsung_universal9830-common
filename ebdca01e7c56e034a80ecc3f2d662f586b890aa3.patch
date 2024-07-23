@@ -1,0 +1,26 @@
+From ebdca01e7c56e034a80ecc3f2d662f586b890aa3 Mon Sep 17 00:00:00 2001
+From: ghostrider-reborn <gh0strider.2k18.reborn@gmail.com>
+Date: Mon, 27 Sep 2021 16:53:09 +0000
+Subject: [PATCH] a51: overlay: Define OEM fast charge sysfs node  * Required
+ for OEM fast charger detection
+
+Change-Id: I62b2f8ceee893085a2e4d509529d6a373dfd8b68
+---
+ overlay/frameworks/base/core/res/res/values/config.xml | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/overlay/frameworks/base/core/res/res/values/config.xml b/overlay/frameworks/base/core/res/res/values/config.xml
+index 281b46a..f7378eb 100644
+--- a/overlay/frameworks/base/core/res/res/values/config.xml
++++ b/overlay/frameworks/base/core/res/res/values/config.xml
+@@ -639,4 +639,10 @@
+      <dimen name="status_bar_height_portrait">100.0px</dimen>
+      <dimen name="status_bar_height_landscape">100.0px</dimen>
+ 
++   <!-- Path to fast charging status file to detect whether an oem fast charger is active -->
++    <string name="config_oemFastChargerStatusPath" translatable="false">/sys/class/power_supply/battery/charging_type</string>
++
++    <!-- Expected value from fast charging status file  -->
++    <string name="config_oemFastChargerStatusValue" translatable="false">Fast</string>
++
+ </resources>

@@ -98,7 +98,7 @@ vendor/bin/hw/gps.sh
 -vendor/bin/hw/lhd
 -vendor/bin/hw/vendor.samsung.hardware.gnss@2.1-service
 vendor/etc/gnss/gps.cer
-vendor/etc/gnss/gps.xml
+vendor/etc/gnss/gps.xml|91a2ed407bd990e343aabaafed361d72d3c8e918
 vendor/etc/init/vendor.samsung.hardware.gnss@2.1-service.rc
 vendor/etc/sensor/lhd.conf
 -vendor/lib64/hw/android.hardware.gnss@2.1-impl.so
