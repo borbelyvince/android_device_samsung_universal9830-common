@@ -79,7 +79,9 @@ ro.incremental.enable=true
 vendor.powerhal.disp.idle_support=false
 
 # RIL
+ro.vendor.sec.radio.def_network=9,9
 vendor.sec.rild.libpath=/vendor/lib64/libsec-ril.so
+vendor.sec.rild.libpath2=/vendor/lib64/libsec-ril-dsds.so
 
 # SoundTrigger
 ro.hardware.sound_trigger.primary=exynos990
