@@ -40,33 +40,4 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl">
-        <name>vendor.samsung.hardware.radio</name>
-        <version>2.2</version>
-        <interface>
-            <name>ISehRadio</name>
-            <instance>slot1</instance>
-            <instance>slot2</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.samsung.hardware.radio.bridge</name>
-        <version>2.0</version>
-        <interface>
-            <name>ISehBridge</name>
-            <instance>slot1</instance>
-            <instance>slot2</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.samsung.hardware.radio.channel</name>
-        <version>2.0</version>
-        <interface>
-            <name>ISehChannel</name>
-            <instance>epdgd</instance>
-            <instance>epdgd2</instance>
-            <instance>imsd</instance>
-            <instance>imsd2</instance>
-        </interface>
-    </hal>
 </compatibility-matrix>
