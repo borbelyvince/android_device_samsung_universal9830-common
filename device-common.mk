@@ -348,9 +348,8 @@ PRODUCT_COPY_FILES += \
 
 # Thermal
 PRODUCT_PACKAGES += \
-    android.hardware.thermal-service.samsung \
-    android.hardware.thermal@2.0.vendor \
-    thermal_symlinks.samsung
+    android.hardware.thermal-service.pixel \
+    thermal_symlinks
 
 # Tetheroffload
 PRODUCT_PACKAGES += \
