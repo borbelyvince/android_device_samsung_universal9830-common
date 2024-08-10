@@ -252,6 +252,12 @@
         },
         {
             "PowerHint": "LAUNCH",
+            "Node": "GPUMinFreq",
+            "Duration": 3000,
+            "Value": "377000"
+        },
+        {
+            "PowerHint": "LAUNCH",
             "Node": "KernelAppStartNotify",
             "Duration": 3000,
             "Value": "1"
